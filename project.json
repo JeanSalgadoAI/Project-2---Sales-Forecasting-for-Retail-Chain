@@ -1,0 +1,14 @@
+{
+  "number": 2,
+  "title": "Regressão linear com variáveis sintéticas",
+  "mode": "regression",
+  "linear": true,
+  "target": "target",
+  "features": [
+    "feature_1",
+    "feature_2"
+  ],
+  "objective": "Avaliar regressão linear contra a média do treino sem ajustar a escala sobre o teste.",
+  "limitations": "O alvo foi gerado de forma independente dos atributos. Eventuais diferenças de desempenho neste recorte são variação amostral, não evidência de capacidade preditiva em produção. Não há datas, lojas ou vendas; esta base não permite previsão de vendas.",
+  "data": "data/simulated_data.csv"
+}

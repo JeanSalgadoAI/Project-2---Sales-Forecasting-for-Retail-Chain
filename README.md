@@ -1,62 +1,60 @@
-# Project-2: Retail Sales Forecasting
+# Regressão linear com variáveis sintéticas
 
-## Overview
-This project aims to predict future sales for a retail store using historical sales data. The goal is to develop a forecasting model that helps in inventory planning, optimizing stock levels, and improving overall sales strategies.
+Avaliar regressão linear contra a média do treino sem ajustar a escala sobre o teste.
 
-## Objectives
-- Analyze historical sales data to identify trends and seasonality.
-- Use time series forecasting methods to predict future sales.
-- Provide actionable insights to improve inventory management and sales strategies.
+**Escopo:** estudo reproduzível com dados sintéticos. O nome histórico do repositório é mantido; este título e o conteúdo do CSV definem o escopo efetivo. Não são apresentados clientes, resultados comerciais ou autoria individual de entregas anteriores.
 
-## Dataset
-The dataset contains historical sales records, including daily sales, store information, promotional activities, and holiday events. It is assumed to be in CSV format and stored in the `data` folder.
+## Dados
 
-## Methodology
-1. **Data Collection:** Historical sales data is collected from retail store records.
-2. **Data Cleaning:** Handle missing values and remove anomalies to ensure data accuracy.
-3. **Exploratory Data Analysis (EDA):** Use statistical analysis and visualizations to understand sales trends, seasonality, and patterns.
-4. **Modeling:** Implement time series forecasting models, such as ARIMA or Prophet, to predict future sales.
-5. **Evaluation:** Evaluate model performance using metrics like Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE).
+O código original gera esta base artificialmente. Os valores não descrevem pessoas, empresas ou clientes reais. O CSV foi preservado: **100 linhas, 3 colunas**. Veja o [dicionário de dados](data/README.md).
 
-## Requirements
-To run this project, you need the following libraries installed:
+## Executar
+
+Requisitos: Python 3.11+; versões de bibliotecas testadas em `requirements.txt`.
+
 ```bash
-pip install pandas matplotlib scikit-learn statsmodels fbprophet
+python -m venv .venv
+# Linux/macOS:
+source .venv/bin/activate
+# Windows PowerShell, em vez da linha anterior:
+# .venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python main.py
+python -m unittest -v test_analysis.py
 ```
 
-## How to Run
-1. Clone this repository: `git clone https://github.com/JeanSalgadoAI/Project-2---Retail-Sales-Forecasting.git`
-2. Navigate to the project folder: `cd Project-2---Retail-Sales-Forecasting`
-3. Ensure that the dataset is in the `data` folder.
-4. Run the Jupyter Notebook: `jupyter notebook notebooks/Sales_Forecasting.ipynb`
+Baixe o código pelo botão **Code → Download ZIP**, extraia e abra um terminal na pasta do projeto. O programa usa caminhos relativos ao próprio arquivo, não baixa dados e não altera o CSV. O [notebook](notebooks/main.ipynb) oferece a mesma análise em etapas; Jupyter ou a extensão de notebooks do VS Code é opcional e deve ser instalada separadamente.
 
-## Results
-- The forecasted sales are visualized using line plots, highlighting trends and seasonality.
-- The model performance is evaluated using MAE and RMSE, and results are provided in the final report.
+## Método
 
-## Files and Folders
-```bash
-Project-2---Retail-Sales-Forecasting
-│   README.md
-│   LICENSE
-│   .gitignore
-│
-├───data
-│    └── raw (contains raw data files)
-│
-├───models
-│    └── sales_forecast_model.pkl (contains trained model)
-│
-├───notebooks
-│    └── Sales_Forecasting.ipynb (Jupyter Notebook with analysis)
-│
-├───reports
-│    └── Sales_Forecasting_Report.pdf (final report)
-│
-└───scripts
-     └── generate_forecast.py (Python script for running analysis)
-```
+Os atributos, a tarefa, a separação e os limites ficam explícitos em [`project.json`](project.json). Em tarefas preditivas, a avaliação usa uma amostra reservada e um baseline; transformações aprendidas nunca usam o teste. Em análises temporais ou por campanha, a separação respeita tempo ou grupo. Bases inadequadas para classificação recebem análise de qualidade, sem métricas preditivas artificiais.
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Resultados
 
+![Resumo da execução](reports/summary.svg)
+
+- [Relatório com resultados calculados](reports/report.md)
+- [Métricas e identificação do arquivo de entrada](reports/metrics.json)
+- [Previsões ou tabelas agregadas](reports/results.csv)
+- [Resumo em PDF](reports/report.pdf)
+
+O hash SHA-256 do CSV é registrado junto às métricas. A semente aleatória é 42. As saídas anteriores foram substituídas por resultados da execução revisada, sem apagar o histórico do Git.
+
+## Limitações
+
+O alvo foi gerado de forma independente dos atributos. Eventuais diferenças de desempenho neste recorte são variação amostral, não evidência de capacidade preditiva em produção. Não há datas, lojas ou vendas; esta base não permite previsão de vendas.
+
+## Estrutura
+
+| Arquivo | Finalidade |
+|---|---|
+| `main.py` | Pipeline executável e geração dos relatórios |
+| `project.json` | Configuração e hipóteses específicas deste estudo |
+| `data/` | CSV preservado e dicionário |
+| `notebooks/main.ipynb` | Leitura interativa da análise |
+| `reports/` | Saídas calculadas e reproduzíveis |
+| `test_analysis.py` | Testes de separação, vazamento e consistência de métricas |
+
+## Licença
+
+Consulte [LICENSE](LICENSE).
